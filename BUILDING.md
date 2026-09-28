@@ -12,7 +12,7 @@ format.
 Clone the repository recursively so all required submodules are initialized:
 
 ~~~bash
-git clone --recursive <repository-url>
+git clone --recursive https://github.com/DankZoneStudios/CV64Recomp.git
 cd CV64Recomp
 ~~~
 
