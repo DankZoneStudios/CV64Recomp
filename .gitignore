@@ -1,0 +1,81 @@
+# ============================================================
+# Castlevania 64 Recompiled - local/generated files
+# ============================================================
+
+# Build directories
+/out/
+/build/
+/cmake-build-*/
+
+# Generated recompilation output
+/RecompiledFuncs/
+/RecompiledPatches/
+
+# Generated RSP recompilation output
+/rsp/
+
+# Local recompiler executables
+/N64Recomp
+/N64Recomp.exe
+/RSPRecomp
+/RSPRecomp.exe
+
+# ROMs / ROM-derived files
+*.z64
+*.n64
+*.v64
+*.rom
+*.elf
+
+# Generated patch binaries
+/patches/*.bin
+/patches/*.elf
+
+# Known-good/local binaries
+/known-good/
+*.exe
+*.dll
+*.pdb
+
+# Debug logs and dumps
+/*-debug.txt
+/crashlog*.txt
+/dump-headers.txt
+/tlb-mask-test.txt
+
+# Local backup/test files
+*.before-*
+*.before-ui-test
+*.bak
+*.tmp
+
+# Local build helper scripts created during debugging
+/build-launcher-test.cmd
+/build-vs2022.cmd
+/check-vs2022-env.cmd
+/configure-launcher-test.cmd
+/configure-win.cmd
+/dump-cv64.cmd
+
+# CMake / Ninja generated files
+CMakeCache.txt
+CMakeFiles/
+build.ninja
+.ninja_deps
+.ninja_log
+cmake_install.cmake
+compile_commands.json
+
+# IDE/editor files
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Numbered debug logs
+/*-debug*.txt

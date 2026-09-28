@@ -11,15 +11,15 @@ void recomptheme::set_custom_theme() {
     theme::set_theme_color(theme::color::ModalOverlay, Color{10, 10, 11, 242}); // actually the background color of the modal itself
     theme::set_theme_color(theme::color::BGShadow, Color{0, 0, 0, 89});
     theme::set_theme_color(theme::color::BGShadow2, Color{10, 10, 11, 184});
-    theme::set_theme_color(theme::color::Text, Color{242, 242, 242, 255});
-    theme::set_theme_color(theme::color::TextActive, Color{245, 245, 245, 255});
-    theme::set_theme_color(theme::color::TextDim, Color{204, 204, 204, 255});
-    theme::set_theme_color(theme::color::TextInactive, Color{255, 255, 255, 153});
-    theme::set_theme_color(theme::color::TextA5, Color{242, 242, 242, 13});
-    theme::set_theme_color(theme::color::TextA20, Color{242, 242, 242, 51});
-    theme::set_theme_color(theme::color::TextA30, Color{242, 242, 242, 77});
-    theme::set_theme_color(theme::color::TextA50, Color{242, 242, 242, 128});
-    theme::set_theme_color(theme::color::TextA80, Color{242, 242, 242, 204});
+    theme::set_theme_color(theme::color::Text, Color{255, 220, 0, 255});
+    theme::set_theme_color(theme::color::TextActive, Color{255, 230, 64, 255});
+    theme::set_theme_color(theme::color::TextDim, Color{204, 176, 0, 255});
+    theme::set_theme_color(theme::color::TextInactive, Color{255, 220, 0, 153});
+    theme::set_theme_color(theme::color::TextA5, Color{255, 220, 0, 13});
+    theme::set_theme_color(theme::color::TextA20, Color{255, 220, 0, 51});
+    theme::set_theme_color(theme::color::TextA30, Color{255, 220, 0, 77});
+    theme::set_theme_color(theme::color::TextA50, Color{255, 220, 0, 128});
+    theme::set_theme_color(theme::color::TextA80, Color{255, 220, 0, 204});
     theme::set_theme_color(theme::color::Primary, Color{29, 93, 226, 255});
     theme::set_theme_color(theme::color::PrimaryL, Color{167, 191, 241, 255});
     theme::set_theme_color(theme::color::PrimaryD, Color{0, 38, 117, 255});

@@ -173,7 +173,7 @@ const float animation_skip_time = 10.0f;
 void banjo::launcher_animation_setup(recompui::LauncherMenu *menu) {
     auto context = recompui::get_current_context();
     recompui::Element *background_container = menu->get_background_container();
-    background_container->set_background_color({ 0x1F, 0x63, 0xC2, 0xFF });
+    background_container->set_background_color({ 0x00, 0x00, 0x00, 0xFF });
 
     launcher_context.wrapper = context.create_element<recompui::Element>(background_container, 0);
     launcher_context.wrapper->set_position(recompui::Position::Absolute);

@@ -14,6 +14,7 @@ trace_mode = false
 [patches]
 
 ignored = [
+      "func_A4000040_40", "func_A4000690_690", "func_A4000778_778", "func_A4000980_980", "func_A400090C_90C", "func_A4000880_880", "func_A4000688_688", "func_A4000AD0_AD0", "func_A4000A40_A40",
     "func_80014EE0_15AE0", # handwritten, unused?
     "osVirtualToPhysical_recomp"
 ]

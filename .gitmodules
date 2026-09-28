@@ -3,13 +3,13 @@
 	url = https://github.com/RevoSucks/CV64Syms.git
 [submodule "lib/N64ModernRuntime"]
 	path = lib/N64ModernRuntime
-	url = https://github.com/RevoSucks/N64ModernRuntime.git
+	url = https://github.com/DankZoneStudios/N64ModernRuntime.git
 [submodule "lib/RecompFrontend"]
 	path = lib/RecompFrontend
 	url = https://github.com/N64Recomp/RecompFrontend.git
 [submodule "lib/rt64"]
 	path = lib/rt64
-	url = https://github.com/rt64/rt64.git
+	url = https://github.com/DankZoneStudios/rt64.git
 [submodule "lib/cv64"]
 	path = lib/cv64
-	url = https://github.com/k64ret/cv64.git
+	url = https://github.com/DankZoneStudios/cv64.git

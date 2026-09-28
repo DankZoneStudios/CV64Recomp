@@ -119,9 +119,18 @@ add_custom_target(PatchesBin
 )
 
 # Generate patches_bin.c from patches.bin
-add_custom_command(OUTPUT ${CMAKE_SOURCE_DIR}/RecompiledPatches/patches_bin.c
-    COMMAND file_to_c ${CMAKE_SOURCE_DIR}/patches/patches.bin bk_patches_bin ${CMAKE_SOURCE_DIR}/RecompiledPatches/patches_bin.c ${CMAKE_SOURCE_DIR}/RecompiledPatches/patches_bin.h
-    DEPENDS ${CMAKE_SOURCE_DIR}/patches/patches.bin
+add_custom_command(
+    OUTPUT
+        ${CMAKE_SOURCE_DIR}/RecompiledPatches/patches_bin.c
+        ${CMAKE_SOURCE_DIR}/RecompiledPatches/patches_bin.h
+    COMMAND $<TARGET_FILE:file_to_c>
+        ${CMAKE_SOURCE_DIR}/patches/patches.bin
+        bk_patches_bin
+        ${CMAKE_SOURCE_DIR}/RecompiledPatches/patches_bin.c
+        ${CMAKE_SOURCE_DIR}/RecompiledPatches/patches_bin.h
+    DEPENDS
+        ${CMAKE_SOURCE_DIR}/patches/patches.bin
+        file_to_c
 )
 
 # Recompile patches elf into patches.c and patches.bin
@@ -130,10 +139,11 @@ add_custom_command(OUTPUT
                        ${CMAKE_SOURCE_DIR}/RecompiledPatches/patches.c
                        ${CMAKE_SOURCE_DIR}/RecompiledPatches/recomp_overlays.inl
                        ${CMAKE_SOURCE_DIR}/RecompiledPatches/funcs.h
-                   # TODO: Look into why modifying patches requires two builds to take
-                   COMMAND ./N64Recomp patches.toml
+                   COMMAND $<TARGET_FILE:N64RecompCLI> patches.toml
                    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-                   DEPENDS ${CMAKE_SOURCE_DIR}/patches/patches.elf
+                   DEPENDS
+                       ${CMAKE_SOURCE_DIR}/patches/patches.elf
+                       N64RecompCLI
 )
 
 # Main executable
@@ -227,6 +237,15 @@ if (WIN32)
     target_link_directories(CV64Recompiled PRIVATE
         ${sdl2_SOURCE_DIR}/lib/x64
     )
+
+    # Keep runtime assets in sync with the output folder.
+    add_custom_target(CV64RuntimeAssets ALL
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${CMAKE_SOURCE_DIR}/assets"
+            "$<TARGET_FILE_DIR:CV64Recompiled>/assets"
+        COMMENT "Copying runtime assets"
+    )
+    add_dependencies(CV64Recompiled CV64RuntimeAssets)
 
     # Copy SDL2 and dxc DLLs to output folder as post build step
     add_custom_command(TARGET CV64Recompiled POST_BUILD
