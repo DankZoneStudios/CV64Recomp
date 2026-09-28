@@ -1,5 +1,9 @@
 #include "banjo_launcher.h"
+#include "ui_image.h"
 #include <atomic>
+#include <fstream>
+#include <iterator>
+#include <vector>
 
 struct KeyframeRot {
     float seconds;
@@ -181,9 +185,19 @@ void banjo::launcher_animation_setup(recompui::LauncherMenu *menu) {
     launcher_context.wrapper->set_height(100, recompui::Unit::Percent);
     launcher_context.wrapper->set_top(0);
 
+    std::ifstream reinhardt_file("assets/Reinhardt.png", std::ios::binary);
+    if (reinhardt_file) {
+        std::vector<char> reinhardt_bytes(
+            (std::istreambuf_iterator<char>(reinhardt_file)),
+            std::istreambuf_iterator<char>()
+        );
+
+        recompui::queue_image_from_bytes_file("cv64_reinhardt", reinhardt_bytes);
+    }
+
     // Disable and hide the options.
     for (auto option : menu->get_game_options_menu()->get_options()) {
-        option->set_font_family("Suplexmentary Comic NC");
+        option->set_font_family("MedievalSharp");
         option->set_enabled(false);
         option->set_opacity(0.0f);
         option->set_padding(24.0f);
@@ -198,6 +212,18 @@ void banjo::launcher_animation_setup(recompui::LauncherMenu *menu) {
     launcher_context.jiggy_hole_svg = create_animated_svg(context, launcher_context.wrapper, "JiggyHole.svg", 2180.0f, 2160.0f);
     launcher_context.banjo_svg = create_animated_svg(context, launcher_context.wrapper, "Banjo.svg", 649.0f, 622.0f);
     launcher_context.kazooie_svg = create_animated_svg(context, launcher_context.wrapper, "Kazooie.svg", 626.0f, 774.0f);
+
+    if (reinhardt_file) {
+        auto reinhardt_image = context.create_element<recompui::Image>(
+            launcher_context.wrapper,
+            "cv64_reinhardt"
+        );
+        reinhardt_image->set_position(recompui::Position::Absolute);
+        reinhardt_image->set_left(-100.0f);
+        reinhardt_image->set_bottom(-135.0f);
+        reinhardt_image->set_width(1325.0f, recompui::Unit::Dp);
+        reinhardt_image->set_height(966.5771484375f, recompui::Unit::Dp);
+    }
 
     launcher_context.cloud_svgs[0] = create_animated_svg(context, background_container, "Cloud1.svg", 461.0f, 154.0f);
     launcher_context.cloud_svgs[1] = create_animated_svg(context, background_container, "Cloud2.svg", 461.0f, 167.0f);
