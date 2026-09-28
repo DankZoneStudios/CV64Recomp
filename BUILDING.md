@@ -98,17 +98,22 @@ The Windows build has been tested with:
 
 - Windows 10/11 x64
 - Visual Studio 2022
-- LLVM/Clang (`clang-cl`)
+- LLVM/Clang (`clang-cl`) for the Windows build
+- A standalone LLVM installation with MIPS target support for the project patches
 - CMake
 - Ninja
 
-Run the following commands from a Visual Studio 2022 x64 developer environment,
-with LLVM available on `PATH`.
+Run the following commands from a Visual Studio 2022 x64 developer environment.
+
+The patch build requires a Clang/LLD installation with MIPS target support.
+Visual Studio's bundled LLVM may not include the required MIPS backend options.
+If standalone LLVM is installed in `C:\Program Files\LLVM`, configure it
+explicitly with `PATCHES_C_COMPILER` and `PATCHES_LD` as shown below.
 
 Configure a Release build:
 
 ~~~cmd
-cmake -S . -B out/build/release -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang-cl -DCMAKE_CXX_COMPILER=clang-cl
+cmake -S . -B out/build/release -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang-cl -DCMAKE_CXX_COMPILER=clang-cl -DPATCHES_C_COMPILER="C:/Program Files/LLVM/bin/clang.exe" -DPATCHES_LD="C:/Program Files/LLVM/bin/ld.lld.exe"
 ~~~
 
 Build the executable:
