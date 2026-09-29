@@ -1,4 +1,4 @@
-# Castlevania 64: Recompiled v0.6.0
+# Castlevania 64: Recompiled v0.6.1
 
 This is a modified build of Castlevania 64: Recompiled based on the
 CV64Recomp project and its upstream projects.
@@ -16,7 +16,7 @@ The source code corresponding to this release is available from:
 
 https://github.com/DankZoneStudios/CV64Recomp
 
-The Git tag for this release is `v0.6.0`.
+The Git tag for this release is `v0.6.1`.
 
 ## Licenses
 
