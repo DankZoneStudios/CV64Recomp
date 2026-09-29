@@ -86,6 +86,41 @@ extern "C" void recomp_get_window_resolution(uint8_t* rdram, recomp_context* ctx
     MEM_W(0, height_out) = (u32)height;
 }
 
+static float get_widescreen_culling_bound() {
+    ultramodern::renderer::GraphicsConfig graphics_config = ultramodern::renderer::get_graphics_config();
+
+    constexpr float original_aspect_ratio = 4.0f / 3.0f;
+    constexpr float original_half_height = 120.0f;
+
+    float aspect_ratio = original_aspect_ratio;
+
+    if (graphics_config.ar_option == ultramodern::renderer::AspectRatio::Expand) {
+        int width, height;
+        recompui::get_window_size(width, height);
+
+        if (height > 0) {
+            aspect_ratio = std::max(
+                static_cast<float>(width) / static_cast<float>(height),
+                original_aspect_ratio
+            );
+        }
+    }
+
+    return original_half_height * aspect_ratio;
+}
+
+extern "C" void recomp_adjust_widescreen_culling_lower(uint8_t* rdram, recomp_context* ctx) {
+    ctx->f20.fl += 160.0f - get_widescreen_culling_bound();
+}
+
+extern "C" void recomp_adjust_widescreen_culling_upper(uint8_t* rdram, recomp_context* ctx) {
+    ctx->f10.fl += get_widescreen_culling_bound() - 160.0f;
+}
+
+extern "C" void recomp_adjust_widescreen_culling_fallback_upper(uint8_t* rdram, recomp_context* ctx) {
+    ctx->f8.fl += get_widescreen_culling_bound() - 160.0f;
+}
+
 extern "C" void recomp_get_target_aspect_ratio(uint8_t* rdram, recomp_context* ctx) {
     ultramodern::renderer::GraphicsConfig graphics_config = ultramodern::renderer::get_graphics_config();
     float original = _arg<0, float>(rdram, ctx);

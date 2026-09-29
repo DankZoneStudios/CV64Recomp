@@ -4,6 +4,9 @@
 #include "patch_helpers.h"
 
 DECLARE_FUNC(void, recomp_get_window_resolution, u32*, u32*);
+DECLARE_FUNC(void, recomp_adjust_widescreen_culling_lower, void);
+DECLARE_FUNC(void, recomp_adjust_widescreen_culling_upper, void);
+DECLARE_FUNC(void, recomp_adjust_widescreen_culling_fallback_upper, void);
 DECLARE_FUNC(float, recomp_get_target_aspect_ratio, float);
 DECLARE_FUNC(s32, recomp_get_target_framerate, s32);
 DECLARE_FUNC(s32, recomp_high_precision_fb_enabled);

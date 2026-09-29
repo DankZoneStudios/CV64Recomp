@@ -720,6 +720,9 @@ int main(int argc, char** argv) {
     recomp::mods::register_deprecated_mod("bk_recomp_mod_fov_slider", recomp::mods::DeprecationStatus::BrokenVersion, recomp::Version(1, 1, 0));
 
     REGISTER_FUNC(recomp_get_window_resolution);
+    REGISTER_FUNC(recomp_adjust_widescreen_culling_lower);
+    REGISTER_FUNC(recomp_adjust_widescreen_culling_upper);
+    REGISTER_FUNC(recomp_adjust_widescreen_culling_fallback_upper);
     REGISTER_FUNC(recomp_get_target_aspect_ratio);
     REGISTER_FUNC(recomp_get_target_framerate);
     REGISTER_FUNC(recomp_get_cutscene_aspect_ratio);

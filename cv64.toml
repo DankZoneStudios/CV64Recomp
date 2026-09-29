@@ -96,3 +96,30 @@ before_vram = 0x0F008EEC
 text = """
     ctx->r14 = 0x0F00A260;
 """
+
+# Dynamic widescreen CPU visibility bounds.
+#
+# The original function computes horizontal visibility using +/-160.
+# Preserve its existing object-margin calculations and shift the final
+# float bounds according to the active output aspect ratio.
+
+[[patches.hook]]
+func = "func_80006D24_7924"
+before_vram = 0x800074F4
+text = """
+    recomp_adjust_widescreen_culling_lower(rdram, ctx);
+"""
+
+[[patches.hook]]
+func = "func_80006D24_7924"
+before_vram = 0x80007518
+text = """
+    recomp_adjust_widescreen_culling_upper(rdram, ctx);
+"""
+
+[[patches.hook]]
+func = "func_80006D24_7924"
+before_vram = 0x800075B0
+text = """
+    recomp_adjust_widescreen_culling_fallback_upper(rdram, ctx);
+"""
